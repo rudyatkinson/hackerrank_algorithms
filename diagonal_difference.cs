@@ -26,11 +26,9 @@ class Result
     {
         int[] diagonal = new int[2]{0, 0};
 
-        for(int i = 0, j = 0; i < arr.Count(); i++, j++){
+        for(int i = 0, j = 0, k = arr.Count() - 1; i < arr.Count(); i++, j++, k--){
             diagonal[0] += arr[i][j];
-        }
-        for(int i = arr.Count() - 1, j = 0; i >= 0; i--, j++){
-            diagonal[1] += arr[i][j];
+            diagonal[1] += arr[k][j];
         }
 
         return Math.Abs(diagonal[0] - diagonal[1]);
