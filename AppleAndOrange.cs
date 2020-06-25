@@ -16,41 +16,25 @@ class Solution {
 
     // Complete the countApplesAndOranges function below.
     static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
-        int[] distanceApples = new int[apples.Count()];
-        int[] distanceOranges = new int[oranges.Count()];
-        int z = 0;
-        foreach(int i in apples)
-        {
-            distanceApples[z]  = i + a;
-            z++;
-        }
-        z = 0;
-        foreach(int o in oranges)
-        {
-            distanceOranges[z] = o + b;
-            z++;
-        }
-
         int appleCount = 0;
         int orangeCount = 0;
         
-        foreach(int i in distanceApples)
+        foreach(int i in apples)
         {
-            if(i <= t && i >= s)
+            if(i + a <= t && i + a >= s)
             {
                 appleCount++;
             }
         }
-        foreach(int o in distanceOranges)
+        foreach(int o in oranges)
         {
-            if(o <= t && o >= s)
+            if(o + b <= t && o + b >= s)
             {
                 orangeCount++;
             }
         }
 
         Console.WriteLine(appleCount + "\n" + orangeCount);
-
     }
 
     static void Main(string[] args) {
