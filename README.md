@@ -1,2 +1,2 @@
 # Hackerrank Algorithms practices
-[HackerRank, HackerRank](https://www.hackerrank.com/aydnbilal)  
+[HackerRank](https://www.hackerrank.com/aydnbilal)  
