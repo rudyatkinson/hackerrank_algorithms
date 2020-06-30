@@ -1,0 +1,75 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Solution {
+
+    // Complete the formingMagicSquare function below.
+    static int formingMagicSquare(int[][] s) {
+        int totalCost = 0;
+        Dictionary<int, int> dict = new Dictionary<int, int>();
+        for(int j = 0; j < s.Count(); j++){
+            foreach(int i in s[j])
+            {
+                if(!dict.ContainsKey(i))
+                    dict.Add(i, 1);
+                else
+                    dict[i]++;
+            }
+        }
+        List<int> missingNumbers = new List<int>();
+        for(int i = 1; i <= 9; i++)
+        {
+            if(!dict.ContainsKey(i))   
+                missingNumbers.Add(i);
+        }
+        for(int i = 0; i < missingNumbers.Count(); i++)
+        {
+            int minCostKey = 0;
+            int minCost = -1;
+            foreach(KeyValuePair<int, int> d in dict)
+            {
+                if(d.Value > 1)
+                {
+                    int cost = Math.Abs(d.Key - missingNumbers[i]);
+                    if(minCost == -1 || cost < minCost)
+                    {
+                        minCost = cost;
+                        minCostKey = d.Key;
+                    }
+                }
+            }
+            dict[minCostKey]--;
+            totalCost += minCost;
+        }
+        
+        return totalCost;
+    }
+
+    static void Main(string[] args) {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        int[][] s = new int[3][];
+
+        for (int i = 0; i < 3; i++) {
+            s[i] = Array.ConvertAll(Console.ReadLine().Split(' '), sTemp => Convert.ToInt32(sTemp));
+        }
+
+        int result = formingMagicSquare(s);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
