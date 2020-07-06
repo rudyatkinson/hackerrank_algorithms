@@ -16,12 +16,11 @@ class Solution {
 
     // Complete the repeatedString function below.
     static long repeatedString(string s, long n) {
-        char firstElement = s.ElementAt(0);
         long totalRepeatedTimes = 0;
         long repeatedTimesInOne = 0;
         foreach(char c in s)
         {
-            if(c == firstElement)
+            if(c == 'a')
                 repeatedTimesInOne++;
         }
 
@@ -30,7 +29,7 @@ class Solution {
         {
             for(int i = 0; i < n % s.Count(); i++)
             {
-                if(s.ElementAt(i) == firstElement)
+                if(s.ElementAt(i) == 'a')
                     totalRepeatedTimes++;
             }
         }
